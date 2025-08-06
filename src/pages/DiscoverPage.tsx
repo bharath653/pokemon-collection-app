@@ -6,6 +6,10 @@ import { loadCollection, saveCollection } from '../utils/localStorageUtils';
 import PokemonCard from '../components/PokemonCard';
 import Spinner from '../components/spinner';
 
+interface Pokemon {
+  name: string;
+  [key: string]: any;
+}
 export const DiscoverPage: React.FC = () => {
   // Load the saved collection from localStorage (or empty array if none found)
   const [collection, setCollection] = useState<any[]>(loadCollection());
@@ -16,11 +20,12 @@ export const DiscoverPage: React.FC = () => {
     fetchNextPage,         
     isFetchingNextPage,    
     hasNextPage,      
-  } = useInfiniteQuery({
-    queryKey: ['pokemon'],
-    queryFn: ({ pageParam = 0 }) => fetchPokemonList(pageParam), 
-    getNextPageParam: (_, pages) => pages.length * 6, 
-  });
+  } =useInfiniteQuery<Pokemon[], Error>({
+  queryKey: ['pokemon'],
+  queryFn: async ({ pageParam = 0 }) => fetchPokemonList(pageParam),
+  getNextPageParam: (_lastPage, allPages) => allPages.length,
+  initialPageParam: 0,
+});
 
   // Hook for infinite scroll, triggers fetch when scrolling reaches the end
   const loaderRef = useInfiniteScroll(() => {

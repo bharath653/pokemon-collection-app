@@ -17,9 +17,11 @@ body {
 
 .tab-buttons {
   margin-bottom: 1rem;
+  gap: 10px;
 }
 .discover-btn{
   padding: 10px 20px;
+  margin-bottom: 5px;
   border: none;
   border-radius: 25px;
   color: white;
@@ -31,6 +33,7 @@ body {
 }
 .collection-btn{
    padding: 10px 20px;
+   margin-bottom: 5px;
   border: none;
   border-radius: 25px;
   color: white;
