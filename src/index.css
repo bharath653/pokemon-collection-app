@@ -12,7 +12,7 @@ body {
 .main-page{
  background: linear-gradient(to bottom right, #9971dd, #2758df);
  padding: 2rem;
- min-height: 67vh;
+ /* min-height: 67vh; */
 }
 
 .tab-buttons {
